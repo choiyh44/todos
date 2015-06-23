@@ -1,0 +1,23 @@
+<html>
+<head></head>
+<body>
+<script>
+var o1 = {a:1},
+	o2 = {a:2},
+	o3 = {a:3};
+
+document.write('1111111111111<br/>');
+document.write('o1.a: ' + o1.a + '<br/>');
+document.write('o2.a: ' + o2.a + '<br/>');
+document.write('o3.a: ' + o3.a + '<br/>');
+
+o1 = o2 = o3;
+
+document.write('2222222222222<br/>');
+document.write('o1.a: ' + o1.a + '<br/>');
+document.write('o2.a: ' + o2.a + '<br/>');
+document.write('o3.a: ' + o3.a + '<br/>');
+
+</script>
+</body>
+</html>
