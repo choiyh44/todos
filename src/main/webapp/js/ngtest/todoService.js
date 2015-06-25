@@ -1,2 +1,52 @@
-/*! tcblog-todo 2015-06-22 */
-!function(){var a=angular.module("todoServiceModule",[]);a.service("todoService",["$http",function(a){this.getAllTodos=function(b){var c="/ngtest/getAllTodos.nhn";a.get(c).success(function(a,c,d,e){console.log("getAllTodos data: "+a),a&&a.header&&a.header.isSuccessful===!0&&(b.todos=a.todos)})},this.addTodo=function(b){var c="/ngtest/addTodo.nhn";a.get(c,{params:b}).success(function(a,c,d,e){a&&a.header&&a.header.isSuccessful===!0&&(b.id=a.id)})},this.removeTodo=function(b){var c="/ngtest/removeTodo.nhn";a.get(c,{params:{id:b}}).success(function(a,b,c,d){a&&a.header&&a.header.isSuccessful===!0})},this.updateTodo=function(b){var c="/ngtest/updateTodo.nhn";a.get(c,{params:b}).success(function(a,b,c,d){a&&a.header&&a.header.isSuccessful===!0})}}])}();
+(function() {
+	var app = angular.module('todoServiceModule', []);
+	app.service('todoService', ["$http", function($http){
+			// todos 조회
+			this.getAllTodos = 
+				function(todoController) {
+					var url = '/ngtest/getAllTodos.nhn';
+					$http.get(url).
+						success(function(data, status, headers, config) {
+							console.log('getAllTodos data: ' + data);
+							if (data && data.header && data.header.isSuccessful === true) {
+								todoController.todos =  data.todos;
+							}
+						});
+			};
+				
+			this.addTodo = 
+				function (todo) {
+					var url = '/ngtest/addTodo.nhn';
+					$http.get(url, {params:todo}).
+						success(function(data, status, headers, config) {
+							if (data && data.header && data.header.isSuccessful === true) {
+								todo.id = data.id;
+							}
+						});
+			};
+
+			this.removeTodo = 
+				function (id) {
+					var url = '/ngtest/removeTodo.nhn';
+					$http.get(url, {params:{'id':id}}).
+						success(function(data, status, headers, config) {
+							if (data && data.header && data.header.isSuccessful === true) {
+								// do nothing
+							}
+						});
+			};
+
+			this.updateTodo = 
+				function (todo) {
+					var url = '/ngtest/updateTodo.nhn';
+					$http.get(url, {params:todo}).
+						success(function(data, status, headers, config) {
+							if (data && data.header && data.header.isSuccessful === true) {
+								// do nothing
+							}
+						});
+			};
+	
+	}]);
+	
+})();

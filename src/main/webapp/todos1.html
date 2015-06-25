@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="todos">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" type="text/css" href="/css/lib/bootstrap.min.css" />
+<script type="text/javascript" src="/js/lib/angular.min.js"></script>
+<script type="text/javascript" src="/js/todos/todosApp1.js"></script>
+</head>
+
+<body ng-controller="TodosController">
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<!-- title -->
+			<div class="page-header">
+				<h1>todos</h1>
+			</div>
+			<!--// title -->
+
+			<!-- input row -->
+			<form ng-submit="onTodoFormSubmit()">
+				<input type="text" ng-model="todoInput">
+			</form>
+			<!-- /input-group -->
+
+			<!-- input row -->
+			<div ng-repeat="todo in todos">
+				<input type="checkbox" ng-model="todo.completed" ng-click="onClickTodoCheckBox(todo)" />
+				<span ng-show="todo.completed"><del>{{todo.name}}</del></span> 
+				<span ng-hide="todo.completed">{{todo.name}}</span> 
+				<a ng-click="deleteTodo(todo.id)">삭제</a>
+			</div>
+			<!-- /input-group -->
+
+			<div class="input-group">
+				<span>{{getActiveCount()}} items left.</span>
+			</div>
+			<!-- // input-group -->
+		</div>
+		<!--// panel-body -->
+	</div>
+	<!-- // panel -->
+
+</body>
+</html>
